@@ -1,0 +1,88 @@
+﻿spring: 
+    profiles:
+     active:
+      - dev
+    
+---
+server: 
+   port: 8004
+   
+spring: 
+    profiles: dev
+    application:
+       name: microservicecloud-config-dept-client
+    datasource:
+       type: com.alibaba.druid.pool.DruidDataSource
+       driverClassName: com.mysql.jdbc.Driver
+       url: jdbc:mysql://192.168.72.6:3306/cloudDB01?useUnicode=true&amp;characterEncoding=UTF-8
+       username: root
+       password: 123456
+       dbcp2:
+         min-idle: 5
+         initial-size: 5
+         max-total: 5
+         max-wait-millis: 200
+
+mybatis: 
+   config-location: classpath:mybatis/mybatis.cfg.xml
+   type-aliases-package: com.atguigu.springcloud.entity
+   mapper-locations: 
+     - classpath:mybatis/mapper/**/*.xml
+         
+eureka:
+  client:
+    service-url:
+      #单机版defaultZone: http://localhost:9001/eureka  
+      defaultZone: http://eureka9004.com:9004/eureka/
+  instance: 
+      instance-id: dept-8004.com
+      prefer-ip-address: true
+      
+info: 
+    app.name: atgugui-microservicecloud
+    company.name: www.atgugui.com
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$    
+ 
+--- 
+server: 
+   port: 8004 
+   
+spring: 
+    profiles: test
+    application:
+       name: microservicecloud-config-dept-client
+    datasource:
+       type: com.alibaba.druid.pool.DruidDataSource
+       driverClassName: com.mysql.jdbc.Driver
+       url: jdbc:mysql://192.168.72.7:3306/cloudDB02?useUnicode=true&amp;characterEncoding=UTF-8
+       username: root
+       password: 123456
+       dbcp2:
+         min-idle: 5
+         initial-size: 5
+         max-total: 5
+         max-wait-millis: 200
+         
+mybatis: 
+   config-location: classpath:mybatis/mybatis.cfg.xml
+   type-aliases-package: com.atguigu.springcloud.entity
+   mapper-locations: 
+     - classpath:mybatis/mapper/**/*.xml
+         
+eureka:
+  client:
+    service-url:
+      #单机版defaultZone: http://localhost:9001/eureka  
+      defaultZone: http://eureka9004.com:9004/eureka/
+  instance: 
+      instance-id: dept-8004.com
+      prefer-ip-address: true
+      
+info: 
+    app.name: atgugui-microservicecloud
+    company.name: www.atgugui.com
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$
+ 
+ 

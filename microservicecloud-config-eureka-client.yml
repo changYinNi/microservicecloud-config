@@ -1,0 +1,40 @@
+﻿spring: 
+  profiles:
+    active:
+    - dev
+
+---
+
+server: 
+   port: 9004
+
+spring:     
+    profiles: dev
+    application: 
+       name: microservicecloud-config-eureka-client
+
+eureka: 
+  instance: 
+    hostname: eureka9004.com
+  client: 
+    register-with-eureka: false    #当前eurekaServer自己不注册到服务列表中
+    fetch-registry: true               #不通过eureka获取注册信息
+    service-url:
+      defaultZone: http://eureka9004.com:9004/eureka/
+---        
+server: 
+   port: 9004
+
+spring:     
+    profiles: test
+    application: 
+       name: microservicecloud-config-eureka-client
+
+eureka: 
+  instance: 
+    hostname: eureka9004.com
+  client: 
+    register-with-eureka: false    #当前eurekaServer自己不注册到服务列表中
+    fetch-registry: true               #不通过eureka获取注册信息
+    service-url:
+      defaultZone: http://eureka9004.com:9004/eureka/
